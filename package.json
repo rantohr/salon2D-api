@@ -1,37 +1,18 @@
 {
-  "name": "Netlify-Express",
-  "version": "0.0.1",
-  "description": "Example of how to deploy an Express.js Netlify app.",
-  "main": "functions/server.js",
+  "name": "back_end_netly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "build": "netlify-lambda build express",
-    "start": "node server-local.js",
-    "pug": "node node_modules/pug-cli/index.js views/ --out ./"
+    "build": "netlify deploy --prod"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/king-melchizedek/Netlify-Express.git"
-  },
-  "keywords": [
-    "netlify",
-    "express.js"
-  ],
-  "author": "Ethan Miller",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/king-melchizedek/Netlify-Express/issues"
-  },
-  "homepage": "https://github.com/king-melchizedek/Netlify-Express#readme",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "pug": "^2.0.4",
-    "pug-cli": "^1.0.0-alpha6"
-  },
-  "devDependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "netlify-lambda": "^0.4.0",
-    "pug": "^2.0.4",
-    "pug-cli": "^1.0.0-alpha6",
-    "serverless-http": "^1.6.0"
+    "express": "^4.17.1",
+    "netlify-cli": "^12.7.2",
+    "netlify-lambda": "^2.0.15",
+    "serverless-http": "^2.7.0"
   }
 }
