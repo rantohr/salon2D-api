@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
 var express_1 = require("express");
 var app_constant_1 = require("./app.constant");

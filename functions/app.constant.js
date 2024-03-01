@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.MONGOOSE_URI_DIRECT = exports.MONGOOSE_URI = exports.API_KEY_LIVE = exports.ENV = exports.BASE_BO_URL = exports.BASE_FO_URL = exports.DB_USER = exports.DB_PASSWORD = exports.DB_NAME = exports.DB_PORT = exports.DB_HOST = exports.JWT_HASH_KEY = exports.BO_PATH = exports.DIST_PATH = exports.BODY_PARSER_LIMIT = exports.APP_PORT = void 0;
 var dotenv = require("dotenv");
 var path = require("path");
