@@ -30,9 +30,6 @@ var AppRouter = /** @class */ (function () {
         this.router.use('/api/upload', upload_route_1.default);
         this.router.use('/api/networking', networking_route_1.default);
         this.router.use('/api/projects', project_route_1.default);
-        this.router.use('/', function (req, res) {
-            return res.sendFile(path.join(process.cwd(), app_constant_1.DIST_PATH + "/index.html"));
-        });
     };
     return AppRouter;
 }());
