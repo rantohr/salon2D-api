@@ -21,7 +21,7 @@ var UploadRoute = /** @class */ (function () {
         // this.router.post('', upload.single('file'), UploadController.uploadV2)
         this.router.post('', upload.single('file'), function (req, res) {
             var filename = req.file.filename;
-            var fileUrl = "http://localhost:" + app_constant_1.APP_PORT + "/" + filename;
+            var fileUrl = "https://salon2d-api.onrender.com/public/" + filename;
             res.send(fileUrl);
         });
     };
