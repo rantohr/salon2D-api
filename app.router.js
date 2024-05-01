@@ -13,6 +13,9 @@ var stat_route_1 = require("./modules/stats/stat.route");
 var upload_route_1 = require("./modules/upload/upload.route");
 var networking_route_1 = require("./modules/networkings/networking.route");
 var project_route_1 = require("./modules/projects/project.route");
+var menu_route_1 = require("./modules/menus/menu.route");
+var background_route_1 = require("./modules/backgrounds/background.route");
+var gallery_route_1 = require("./modules/galleries/gallery.route");
 var AppRouter = /** @class */ (function () {
     function AppRouter() {
         this.router = (0, express_1.Router)();
