@@ -6,6 +6,7 @@ var ProjectSchema = new Schema({
     title: { type: String, trim: true },
     category: { type: String, trim: true },
     description: { type: String, trim: true },
+    image: { type: String, trim: true },
     promoteur: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

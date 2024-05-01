@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
-var app_constant_1 = require("../../app.constant");
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {

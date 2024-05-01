@@ -30,6 +30,9 @@ var AppRouter = /** @class */ (function () {
         this.router.use('/api/upload', upload_route_1.default);
         this.router.use('/api/networking', networking_route_1.default);
         this.router.use('/api/projects', project_route_1.default);
+        this.router.use('/api/menus', menu_route_1.default);
+        this.router.use('/api/backgrounds', background_route_1.default);
+        this.router.use('/api/galleries', gallery_route_1.default);
     };
     return AppRouter;
 }());
