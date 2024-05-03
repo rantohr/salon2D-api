@@ -48,10 +48,7 @@ var BackgroundController = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.backgroundService.create(req.body)];
                     case 1:
                         entries = _a.sent();
-                        res.json({
-                            success: true,
-                            data: entries,
-                        });
+                        res.json(entries);
                         return [2 /*return*/];
                 }
             });
@@ -63,10 +60,7 @@ var BackgroundController = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.backgroundService.getById(req.params.id)];
                     case 1:
                         entries = _a.sent();
-                        res.json({
-                            success: true,
-                            data: entries,
-                        });
+                        res.json(entries);
                         return [2 /*return*/];
                 }
             });
@@ -79,8 +73,8 @@ var BackgroundController = /** @class */ (function () {
                     case 1:
                         entries = _a.sent();
                         res.json({
-                            success: true,
-                            data: entries,
+                            count: entries.count,
+                            results: entries.results,
                         });
                         return [2 /*return*/];
                 }
@@ -93,10 +87,7 @@ var BackgroundController = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.backgroundService.updateById(req.params.id, req.body)];
                     case 1:
                         entries = _a.sent();
-                        res.json({
-                            success: true,
-                            data: entries,
-                        });
+                        res.json(entries);
                         return [2 /*return*/];
                 }
             });
@@ -108,10 +99,7 @@ var BackgroundController = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.backgroundService.deleteById(req.params.id)];
                     case 1:
                         entries = _a.sent();
-                        res.json({
-                            success: true,
-                            data: entries,
-                        });
+                        res.json(entries);
                         return [2 /*return*/];
                 }
             });
