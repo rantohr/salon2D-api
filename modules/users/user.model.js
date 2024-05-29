@@ -171,11 +171,23 @@ UserSchema.methods.matchPassword = function (inputPassword) {
  * generate a jwt token
  * @return jwt string signed token
  */
-UserSchema.methods.generateToken = function () {
+UserSchema.methods.generateAccessToken = function (expireTime) {
+    if (expireTime === void 0) { expireTime = 10; }
     return jwt.sign({
         _id: this._id,
         role: this.role,
-    }, app_constant_1.JWT_HASH_KEY, { expiresIn: "30d" });
+    }, app_constant_1.ACCESS_TOKEN_SECRET, {
+        expiresIn: expireTime ? expireTime + "h" : "10h",
+    });
+};
+UserSchema.methods.generateRefreshToken = function () {
+    var refreshSecret = "" + app_constant_1.REFRESH_TOKEN_SECRET + this.password;
+    return jwt.sign({
+        _id: this._id,
+        role: this.role,
+    }, refreshSecret, {
+        expiresIn: "20d",
+    });
 };
 /**
  * generate and hash password reset token

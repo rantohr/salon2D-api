@@ -91,7 +91,7 @@ var AuthService = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
+                        _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, this.userRepository.addUser(__assign(__assign({}, userPayload), { newUser: true }))];
                     case 1:
                         user = _a.sent();
@@ -105,19 +105,17 @@ var AuthService = /** @class */ (function () {
                                 resetUrl: ""
                             }
                         };
-                        return [4 /*yield*/, (0, sendEmail_1.sendEmail)(options)];
-                    case 2:
-                        _a.sent();
-                        console.log('Email sent.');
+                        // await sendEmail(options);
+                        // console.log('Email sent.')
                         return [2 /*return*/, {
                                 success: true,
                                 data: user,
                             }];
-                    case 3:
+                    case 2:
                         error_2 = _a.sent();
                         console.log('ERROR CATCHED ON SIGNUP:::::', error_2);
                         throw error_2;
-                    case 4: return [2 /*return*/];
+                    case 3: return [2 /*return*/];
                 }
             });
         }); };

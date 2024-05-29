@@ -124,11 +124,13 @@ var AuthController = /** @class */ (function () {
         this.sendTokenResponse = function (user, res) {
             // generate token
             try {
-                var token = user.generateToken();
+                var accessToken = user.generateAccessToken();
+                var refreshToken = user.generateRefreshToken();
                 res.status(200).json({
                     success: true,
                     body: user,
-                    token: token,
+                    accessToken: accessToken,
+                    refreshToken: refreshToken
                 });
             }
             catch (error) {

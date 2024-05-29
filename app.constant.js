@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MONGOOSE_URI_DIRECT = exports.MONGOOSE_URI = exports.API_KEY_LIVE = exports.ENV = exports.BASE_BO_URL = exports.BASE_FO_URL = exports.DB_USER = exports.DB_PASSWORD = exports.DB_NAME = exports.DB_PORT = exports.DB_HOST = exports.JWT_HASH_KEY = exports.BO_PATH = exports.DIST_PATH = exports.BODY_PARSER_LIMIT = exports.APP_PORT = void 0;
+exports.MONGOOSE_URI_DIRECT = exports.MONGOOSE_URI = exports.REFRESH_TOKEN_SECRET = exports.ACCESS_TOKEN_SECRET = exports.API_KEY_LIVE = exports.ENV = exports.BASE_BO_URL = exports.BASE_FO_URL = exports.DB_USER = exports.DB_PASSWORD = exports.DB_NAME = exports.DB_PORT = exports.DB_HOST = exports.JWT_HASH_KEY = exports.BO_PATH = exports.DIST_PATH = exports.BODY_PARSER_LIMIT = exports.APP_PORT = void 0;
 var dotenv = require("dotenv");
 var path = require("path");
 dotenv.config({ path: path.resolve(process.cwd(), ".env") });
@@ -21,6 +21,8 @@ exports.BASE_FO_URL = GET('BASE_FO_URL');
 exports.BASE_BO_URL = GET('BASE_BO_URL');
 exports.ENV = GET('ENV');
 exports.API_KEY_LIVE = GET('API_KEY_LIVE');
+exports.ACCESS_TOKEN_SECRET = GET('ACCESS_TOKEN_SECRET');
+exports.REFRESH_TOKEN_SECRET = GET('REFRESH_TOKEN_SECRET');
 var AUTH_DB = '';
 if (exports.DB_USER) {
     AUTH_DB += exports.DB_USER;
