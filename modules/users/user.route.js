@@ -12,13 +12,13 @@ var UserRoute = /** @class */ (function () {
         // GET
         //this.router.get('/:id', auth.protect, auth.authorize(["Exposant"]), UserController.GetOne)
         this.router.get('/:id', authorization_1.auth.protect, user_controller_1.default.GetOne);
-        this.router.get('', authorization_1.auth.protect, authorization_1.auth.authorize(["Admin"]), user_controller_1.default.GetAll);
+        this.router.get('', authorization_1.auth.protect, user_controller_1.default.GetAll);
         this.router.get('*', user_controller_1.default.Default);
         // POST
-        this.router.post('', authorization_1.auth.protect, authorization_1.auth.authorize(["Admin"]), user_controller_1.default.Create);
+        this.router.post('', authorization_1.auth.protect, authorization_1.auth.authorize(["SuperAdmin", "Admin"]), user_controller_1.default.Create);
         this.router.post('/pleaseConnect', user_controller_1.default.PleaseConnect);
         // DELETE
-        this.router.delete('/:id', authorization_1.auth.protect, authorization_1.auth.authorize(["Admin"]), user_controller_1.default.DeleteOne);
+        this.router.delete('/:id', authorization_1.auth.protect, authorization_1.auth.authorize(["SuperAdmin", "Admin"]), user_controller_1.default.DeleteOne);
         // PUT
         this.router.put('/:id', authorization_1.auth.protect, user_controller_1.default.UpdateOne);
     };
