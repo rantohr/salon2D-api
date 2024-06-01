@@ -53,6 +53,8 @@ var error_response_1 = require("../../utils/error-response");
 var user_repository_1 = require("../users/user.repository");
 var user_model_1 = require("../users/user.model");
 var sendEmail_1 = require("../../utils/sendEmail");
+var salon_repository_1 = require("../salon/salon.repository");
+var salon_model_1 = require("../salon/salon.model");
 var AuthService = /** @class */ (function () {
     function AuthService() {
         var _this = this;
@@ -87,14 +89,21 @@ var AuthService = /** @class */ (function () {
             });
         }); };
         this.signup = function (userPayload) { return __awaiter(_this, void 0, void 0, function () {
-            var user, options, error_2;
+            var user, salon, options, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
+                        _a.trys.push([0, 4, , 5]);
                         return [4 /*yield*/, this.userRepository.addUser(__assign(__assign({}, userPayload), { newUser: true }))];
                     case 1:
                         user = _a.sent();
+                        return [4 /*yield*/, this.salonRepository.findById("66583e9ef50c9ed4cb4eea52")];
+                    case 2:
+                        salon = _a.sent();
+                        console.log("=======================", salon);
+                        if (!salon) {
+                            throw new Error('Salon not found');
+                        }
                         options = {
                             receiver: user.email,
                             context: 'register-done',
@@ -102,20 +111,25 @@ var AuthService = /** @class */ (function () {
                                 name: user.name ? user.name : user.email,
                                 email: userPayload.email,
                                 password: userPayload.password,
-                                resetUrl: ""
+                                resetUrl: "",
+                                nom_salon: salon.nom || 'Nom du salon non disponible',
+                                dd_salon: salon.date_debut || '',
+                                df_salon: salon.date_fin || '',
                             }
                         };
-                        // await sendEmail(options);
-                        // console.log('Email sent.')
+                        return [4 /*yield*/, (0, sendEmail_1.sendEmail)(options)];
+                    case 3:
+                        _a.sent();
+                        console.log('Email sent.');
                         return [2 /*return*/, {
                                 success: true,
                                 data: user,
                             }];
-                    case 2:
+                    case 4:
                         error_2 = _a.sent();
                         console.log('ERROR CATCHED ON SIGNUP:::::', error_2);
                         throw error_2;
-                    case 3: return [2 /*return*/];
+                    case 5: return [2 /*return*/];
                 }
             });
         }); };
@@ -331,6 +345,7 @@ var AuthService = /** @class */ (function () {
             });
         }); };
         this.userRepository = new user_repository_1.UserRepository(user_model_1.default);
+        this.salonRepository = new salon_repository_1.SalonRepository(salon_model_1.default);
     }
     return AuthService;
 }());

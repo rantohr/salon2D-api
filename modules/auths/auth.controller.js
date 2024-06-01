@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var auth_service_1 = require("./auth.service");
 var async_handler_1 = require("../../middlewares/async-handler");
+var error_response_1 = require("../../utils/error-response");
 var AuthController = /** @class */ (function () {
     function AuthController() {
         var _this = this;
@@ -64,24 +65,22 @@ var AuthController = /** @class */ (function () {
             });
         }); });
         this.signup = (0, async_handler_1.asyncHandler)(function (req, res, next) { return __awaiter(_this, void 0, void 0, function () {
-            var userInfo, user, user;
+            var userInfo, user;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.authService.getUserByEmail(req.body.email)];
                     case 1:
                         userInfo = _a.sent();
-                        if (!userInfo) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.authService.signin(req.body)];
-                    case 2:
-                        user = _a.sent();
-                        this.sendTokenResponse(user, res);
-                        return [3 /*break*/, 5];
-                    case 3: return [4 /*yield*/, this.authService.signup(req.body)];
-                    case 4:
+                        if (!userInfo) return [3 /*break*/, 2];
+                        // let user = await this.authService.signin(req.body);
+                        //this.sendTokenResponse(user, res);
+                        return [2 /*return*/, next(new error_response_1.ErrorResponse('Utilisateur déjà inscrit', 409))];
+                    case 2: return [4 /*yield*/, this.authService.signup(req.body)];
+                    case 3:
                         user = _a.sent();
                         res.status(200).json(user);
-                        _a.label = 5;
-                    case 5: return [2 /*return*/];
+                        _a.label = 4;
+                    case 4: return [2 /*return*/];
                 }
             });
         }); });
