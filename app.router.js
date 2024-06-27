@@ -16,6 +16,8 @@ var project_route_1 = require("./modules/projects/project.route");
 var menu_route_1 = require("./modules/menus/menu.route");
 var background_route_1 = require("./modules/backgrounds/background.route");
 var gallery_route_1 = require("./modules/galleries/gallery.route");
+var salon_route_1 = require("./modules/salon/salon.route");
+var bucket_route_1 = require("./modules/bucket/bucket.route");
 var AppRouter = /** @class */ (function () {
     function AppRouter() {
         this.router = (0, express_1.Router)();
@@ -36,6 +38,11 @@ var AppRouter = /** @class */ (function () {
         this.router.use('/api/menus', menu_route_1.default);
         this.router.use('/api/backgrounds', background_route_1.default);
         this.router.use('/api/galleries', gallery_route_1.default);
+        this.router.use('/api/salon', salon_route_1.default);
+        this.router.use('/api/bucket', bucket_route_1.default);
+        this.router.use('/', function (req, res) {
+            return res.sendFile(path.join(process.cwd(), app_constant_1.DIST_PATH + "/index.html"));
+        });
     };
     return AppRouter;
 }());
