@@ -8,109 +8,62 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var storage_1 = require("@google-cloud/storage");
-var BucketService = /** @class */ (function () {
-    function BucketService(bucketName, keyFilename) {
-        var _this = this;
-        this.uploadImage = function (fileBuffer, destination) { return __awaiter(_this, void 0, void 0, function () {
-            var file, publicUrl, err_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        file = this.bucket.file(destination);
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 4, , 5]);
-                        return [4 /*yield*/, file.save(fileBuffer)];
-                    case 2:
-                        _a.sent();
-                        console.log("File uploaded to " + this.bucket.name + ".");
-                        return [4 /*yield*/, this.makeFilePublic(file)];
-                    case 3:
-                        publicUrl = _a.sent();
-                        return [2 /*return*/, publicUrl];
-                    case 4:
-                        err_1 = _a.sent();
-                        console.error("Error uploading file: " + err_1);
-                        throw err_1;
-                    case 5: return [2 /*return*/];
-                }
-            });
-        }); };
-        this.uploadFile = function (fileBuffer, destination) { return __awaiter(_this, void 0, void 0, function () {
-            var file, publicUrl, err_2;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        file = this.bucket.file(destination);
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 4, , 5]);
-                        return [4 /*yield*/, file.save(fileBuffer)];
-                    case 2:
-                        _a.sent();
-                        return [4 /*yield*/, this.makeFilePublic(file)];
-                    case 3:
-                        publicUrl = _a.sent();
-                        return [2 /*return*/, { file: destination, link: publicUrl }];
-                    case 4:
-                        err_2 = _a.sent();
-                        console.error("Error uploading file: " + err_2);
-                        throw err_2;
-                    case 5: return [2 /*return*/];
-                }
-            });
-        }); };
-        this.makeFilePublic = function (file) { return __awaiter(_this, void 0, void 0, function () {
-            var publicUrl, err_3;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, file.makePublic()];
-                    case 1:
-                        _a.sent();
-                        publicUrl = file.publicUrl();
-                        return [2 /*return*/, publicUrl];
-                    case 2:
-                        err_3 = _a.sent();
-                        console.error("Error making file public: " + err_3);
-                        throw err_3;
-                    case 3: return [2 /*return*/];
-                }
-            });
-        }); };
-        this.storage = new storage_1.Storage({ keyFilename: keyFilename });
+const storage_1 = require("@google-cloud/storage");
+const app_constant_1 = require("../../app.constant");
+const serviceAccount = {
+    type: app_constant_1.GOOGLE_TYPE,
+    project_id: app_constant_1.GOOGLE_PROJECT_ID,
+    private_key_id: app_constant_1.GOOGLE_PRIVATE_KEY_ID,
+    private_key: app_constant_1.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    client_email: app_constant_1.GOOGLE_CLIENT_EMAIL,
+    client_id: app_constant_1.GOOGLE_CLIENT_ID,
+    auth_uri: app_constant_1.GOOGLE_AUTH_URI,
+    token_uri: app_constant_1.GOOGLE_TOKEN_URI,
+    auth_provider_x509_cert_url: app_constant_1.GOOGLE_AUTH_PROVIDER_X509_CERT_URL,
+    client_x509_cert_url: app_constant_1.GOOGLE_CLIENT_X509_CERT_URL,
+    universe_domain: app_constant_1.GOOGLE_UNIVERSE_DOMAIN
+};
+class BucketService {
+    constructor(bucketName) {
+        this.uploadImage = (fileBuffer, destination) => __awaiter(this, void 0, void 0, function* () {
+            const file = this.bucket.file(destination);
+            try {
+                yield file.save(fileBuffer);
+                console.log(`File uploaded to ${this.bucket.name}.`);
+                const publicUrl = yield this.makeFilePublic(file);
+                return publicUrl;
+            }
+            catch (err) {
+                console.error(`Error uploading file: ${err}`);
+                throw err;
+            }
+        });
+        this.uploadFile = (fileBuffer, destination) => __awaiter(this, void 0, void 0, function* () {
+            const file = this.bucket.file(destination);
+            try {
+                yield file.save(fileBuffer);
+                const publicUrl = yield this.makeFilePublic(file);
+                return { file: destination, link: publicUrl };
+            }
+            catch (err) {
+                console.error(`Error uploading file: ${err}`);
+                throw err;
+            }
+        });
+        this.makeFilePublic = (file) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield file.makePublic();
+                const publicUrl = file.publicUrl();
+                return publicUrl;
+            }
+            catch (err) {
+                console.error(`Error making file public: ${err}`);
+                throw err;
+            }
+        });
+        this.storage = new storage_1.Storage({ credentials: serviceAccount });
         this.bucket = this.storage.bucket(bucketName);
     }
-    return BucketService;
-}());
+}
 exports.default = BucketService;
